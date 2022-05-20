@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Список групп{% endblock %}
+{% block content %}
+  <div class="container py-5">
+    <h1>{{ group.title }}</h1>
+    <p>{{ group.description|linebreaksbr }}</p>
+        <article>
+          {% for post in paje_obj %}
+           {% include "posts/index.html" %}
+          {% endfor %}
+        {% include "posts/includes/paginator.html" %}
+        </article>
+  </div>
+{% endblock %}
