@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from django.views.decorators.cache import cache_page
+
 
 urlpatterns = [
     path('auth/', include('users.urls')),
@@ -26,7 +26,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('auth/', include('django.contrib.auth.urls')),
     path('about/', include('about.urls', namespace='about')),
-    # path('', cache_page(20)(views.index), name='index'),
 ]
 handler404 = 'core.views.page_not_found'
 handler500 = 'core.views.server_error'

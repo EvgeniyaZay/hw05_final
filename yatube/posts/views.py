@@ -1,7 +1,5 @@
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
-from django.views.decorators.cache import cache_page
 
 from .forms import CommentForm, PostForm
 from .models import Follow, Group, Post, User
@@ -64,6 +62,7 @@ def post_detail(request, post_id):
     }
 
     return render(request, template, context)
+
 
 @login_required
 def add_comment(request, post_id):
@@ -138,6 +137,7 @@ def profile_follow(request, username):
         )
         return redirect('posts:profile', username)
     return redirect('posts:profile', username)
+
 
 @login_required
 def profile_unfollow(request, username):

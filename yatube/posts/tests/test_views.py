@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase, Client, override_settings
+from django.test import TestCase, Client
 from django.urls import reverse
 
 
@@ -123,7 +123,10 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.context.get('post').text, 'Текст поста')
         self.assertEqual(response.context.get('post').group.title,
                          f'{self.group}')
-        self.assertEqual(response.context.get('post').image, f'{self.post.image}')
+        self.assertEqual(
+            response.context.get('post').image,
+            f'{self.post.image}'
+        )
 
     def test_cache(self):
         response = self.authorized_client.get(reverse('posts:index'))
@@ -137,7 +140,6 @@ class StaticURLTests(TestCase):
         self.assertNotEqual(content_post, response.content)
 
 
-
     def test_profile_follow(self):
         """проверка что пользователь не подписан на автора поста"""
         response = self.authorized_client.get(reverse('posts:follow_index'))
@@ -146,16 +148,23 @@ class StaticURLTests(TestCase):
 
         """подписываемся на автора поста"""
         self.authorized_client.get(
-            reverse('posts:profile_follow', kwargs={'username': self.post.author})
+            reverse(
+                'posts:profile_follow',
+                kwargs={'username': self.post.author})
         )
+
         """проверка что пользователь подписался"""
-        response = self.authorized_client.get(reverse('posts:follow_index'))
+        response = self.authorized_client.get(
+            reverse('posts:follow_index')
+        )
         second_object = response.context['page_obj']
         self.assertEqual(0, len(second_object))
 
     def test_profile_unfollow(self):
         self.authorized_client.get(
-            reverse('posts:profile_follow', kwargs={'username': self.post.author})
+            reverse(
+                'posts:profile_follow',
+                kwargs={'username': self.post.author})
         )
 
         response = self.authorized_client.get(reverse('posts:follow_index'))
@@ -221,4 +230,3 @@ class PaginatorViewsTest(TestCase):
                 list_test = response.context['page_obj']
                 list_test.paginator.count
                 self.assertEqual(POST_ON_FIRST_PAGE, len(list_test))
-

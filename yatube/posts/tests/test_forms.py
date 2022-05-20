@@ -175,4 +175,3 @@ class CommentModelTest(TestCase):
             response, reverse(
                 'posts:post_detail', kwargs={'post_id': f'{self.post.id}'}
             ))
-
