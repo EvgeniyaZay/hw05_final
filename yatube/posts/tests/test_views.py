@@ -139,7 +139,6 @@ class StaticURLTests(TestCase):
         response = self.authorized_client.get(reverse('posts:index'))
         self.assertNotEqual(content_post, response.content)
 
-
     def test_profile_follow(self):
         """проверка что пользователь не подписан на автора поста"""
         response = self.authorized_client.get(reverse('posts:follow_index'))
@@ -172,7 +171,9 @@ class StaticURLTests(TestCase):
         self.assertEqual((len(page_object)), 0)
 
         self.authorized_client.get(
-            reverse('posts:profile_unfollow', kwargs={'username': self.post.author})
+            reverse(
+                'posts:profile_unfollow',
+                kwargs={'username': self.post.author})
         )
 
         response = self.authorized_client.get(reverse('posts:follow_index'))
