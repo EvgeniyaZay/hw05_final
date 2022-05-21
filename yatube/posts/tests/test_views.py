@@ -117,7 +117,6 @@ class StaticURLTests(TestCase):
             reverse('posts:post_detail',
                     kwargs={'post_id': f'{self.post.id}'}))
                     )
-        # self.assertEqual(response.context['author'], self.user)
         self.assertEqual(response.context.get('post').author.username,
                          f'{self.post.author}')
         self.assertEqual(response.context.get('post').text, 'Текст поста')
@@ -133,7 +132,6 @@ class StaticURLTests(TestCase):
         content_post = response.content
         Post.objects.get(id=self.post.id).delete()
         response = self.authorized_client.get(reverse('posts:index'))
-        # cache.clear()
         self.assertEqual(content_post, response.content)
         cache.clear()
         response = self.authorized_client.get(reverse('posts:index'))

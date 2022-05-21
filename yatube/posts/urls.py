@@ -28,5 +28,4 @@ urlpatterns = [
         views.profile_unfollow,
         name='profile_unfollow'
     ),
-    # path('', cache_page(20)(views.index), name='index'),
 ]
