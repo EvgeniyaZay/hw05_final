@@ -13,7 +13,7 @@
 ## Инструкция по установке
 ##### Клонируем репозиторий
 
-git clone git@github.com:EvgeniyaZay/hw03_forms.git
+git clone git@github.com:EvgeniyaZay/hw05_final.git
 
 ##### Переходим в папку с проектом
 
