@@ -1,3 +1,35 @@
-# hw05_final
+# backend_community_homework
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+## Социальная сеть YaTube
+В проекте реализованы следующие функции:
+
+- добавление постов авторизованными пользователями
+- редактирование постов только его автором
+- возможность авторизованным пользователям оставлять комментарии к постам
+- подписка/отписка на понравившихся авторов
+- Подключены пагинация, кеширование, авторизация пользователя. Неавторизованному пользователю доступно только чтение. Покрытие тестами. 
+
+
+## Инструкция по установке
+##### Клонируем репозиторий
+
+git clone git@github.com:EvgeniyaZay/hw03_forms.git
+
+##### Переходим в папку с проектом
+
+hw05_final/
+
+##### Устанавливаем отдельное виртуальное окружение для проекта
+
+python3 -m venv venv
+
+##### Активируем виртуальное окружение
+
+source venv/bin/activate
+
+##### Устанавливаем модули необходимые для работы проекта
+
+pip install -r requirements.txt
+
+##### Устанавливаем миграции
+python3 manage.py migrate
